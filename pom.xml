@@ -80,7 +80,7 @@
         <package-name>net.imagej.jep</package-name>
         <main-class>net.imagej.jep.Main</main-class>
         <license.licenseName>cc0</license.licenseName>
-        <license.copyrightOwners>LOCI, Inc.</license.copyrightOwners>
+        <license.copyrightOwners>LOCI</license.copyrightOwners>
         <enforcer.skip>true</enforcer.skip>
     </properties>
 
