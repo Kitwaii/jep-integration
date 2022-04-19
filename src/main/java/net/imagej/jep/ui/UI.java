@@ -63,4 +63,58 @@ public class UI {
 
         return scanner.nextLine();
     }
+
+    /**
+     * Menu selection to choose which scenario to run
+     *
+     * @return User selection about its choice of scenario
+     */
+    public int selectScenario() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Which scenario do you want to execute ?");
+        System.out.println();
+
+        System.out.println("---- Basic examples of JEP ----");
+        System.out.println("1. Basic running test");
+        System.out.println("2. Send and retrieve data");
+        System.out.println();
+
+        System.out.println("---- Simple ImageJ examples by sending instance to Python ----");
+        System.out.println("3. Get ImageJ version through Python");
+        System.out.println("4. Open Image");
+
+        return scanner.nextInt();
+    }
+
+    /**
+     * Ask the user the choice to run a new scenario
+     *
+     * @return User's answer as a boolean
+     */
+    public boolean tryNewScenario() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Do you want to run an other scenario ? (y/yes/n/no)");
+        String answer = scanner.nextLine();
+
+        switch (answer) {
+            case "y":
+            case "yes":
+                return false;
+
+            case "n":
+            case "no":
+                return true;
+
+            default:
+                System.err.println("Please answer only by y or yes or n or no. Please retry.");
+                System.out.println();
+
+                tryNewScenario();
+                break;
+        }
+
+        return true;
+    }
 }

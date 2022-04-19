@@ -41,7 +41,7 @@ public class Utils {
             return true;
         }
         else {
-            System.out.println("The input does not correspond to a System path. Please retry.");
+            System.err.println("The input does not correspond to a System path. Please retry.");
             System.out.println();
             return false;
         }
@@ -84,7 +84,7 @@ public class Utils {
             sitePackagesPath = UI.getInstance().selectSitePackagePath();
 
             if (!new File(sitePackagesPath).isDirectory()) {
-                System.out.println("The selected path is not a directory. Please retry.");
+                System.err.println("The selected path is not a directory. Please retry.");
                 System.out.println();
                 return null;
             }

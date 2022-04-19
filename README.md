@@ -60,3 +60,20 @@ pip list -v
 mvn package dependency:copy-dependencies
 java -cp target/jep-integration-0.1.0-SNAPSHOT.jar:target/dependency/'*' net.imagej.jep.Main
 ```
+
+## Available scenarios
+
+### Basic JEP example
+
+> - Simple JEP execution
+> - Send and retrieve data from Python
+
+### Examples with ImageJ
+
+> - Get ImageJ version from Python
+> - Open an image
+> - More to come
+
+### Examples with PyImageJ
+
+> - Coming soon

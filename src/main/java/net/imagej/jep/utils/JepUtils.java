@@ -31,7 +31,7 @@ public class JepUtils {
         File jepDir = new File(sitePackagesPath, "jep");
 
         if (!jepDir.isDirectory()) {
-            System.out.println("JEP could not be found. Please check if you have installed JEP before.");
+            System.err.println("JEP could not be found. Please check if you have installed JEP before.");
             System.out.println();
             return null;
         }
@@ -53,5 +53,6 @@ public class JepUtils {
      */
     public void setJepPath(String jepPath) throws JepException {
         MainInterpreter.setJepLibraryPath(jepPath);
+        MainInterpreter.setSharedModulesArgv("net.imagej");
     }
 }

@@ -1,8 +1,10 @@
 package net.imagej.jep;
 
-import jep.Interpreter;
-import jep.JepException;
-import jep.SharedInterpreter;
+import net.imagej.jep.scenarios.scenario1.JEPTest;
+import net.imagej.jep.scenarios.scenario2.RetrieveSimpleData;
+import net.imagej.jep.scenarios.scenario2.SendSimpleData;
+import net.imagej.jep.scenarios.scenario3.ImageJInfo;
+import net.imagej.jep.scenarios.scenario4.OpenImage;
 import net.imagej.jep.ui.UI;
 import net.imagej.jep.utils.JepUtils;
 import net.imagej.jep.utils.Utils;
@@ -37,8 +39,8 @@ public class Main {
             switch (pythonUserSelection) {
                 case 1:
                     if (condaHome == null) {
-                        System.out.println("Please activate a conda environment before using this.");
-                        System.out.println("You can activate a conda environment with the command \033[3mconda activate <env_name>\033[0m");
+                        System.err.println("Please activate a conda environment before using this.");
+                        System.err.println("You can activate a conda environment with the command \033[3mconda activate <env_name>\033[0m");
                         System.exit(4);
                     }
                     else {
@@ -58,21 +60,21 @@ public class Main {
 
                         if (pythonExecutionPath == null) {
                             pythonExecutionPath = "";
-                            System.out.println("The Python execution file could not be found. Please select another directory.");
+                            System.err.println("The Python execution file could not be found. Please select another directory.");
                             System.out.println();
                             continue;
                         }
                     }
                     else {
                         pythonPath = "";
-                        System.out.println("The selected Python path is not a directory. Please retry.");
+                        System.err.println("The selected Python path is not a directory. Please retry.");
                         System.out.println();
                         continue;
                     }
                     break;
 
                 default:
-                    System.out.println("Please select only option 1 or 2.");
+                    System.err.println("Please select only option 1 or 2.");
                     System.out.println();
                     continue;
             }
@@ -82,23 +84,29 @@ public class Main {
                 continue;
             }
 
+            // Set the site-packages directory path
             sitePackagesPath = Utils.getInstance().setSitePackagesDirectory(pythonPath, pythonUserSelection);
 
             if (sitePackagesPath == null) {
-                System.out.println("The path to the site-packages directory is not correct. Please retry.");
+                System.err.println("The path to the site-packages directory is not correct. Please retry.");
                 continue;
             }
 
+            // Verify if JEP is in the directory
             jepPath = JepUtils.getInstance().findJepLib(sitePackagesPath);
 
             if (jepPath == null) {
                 continue;
             }
 
+            // Set JEP
             try {
                 JepUtils.getInstance().setJepPath(jepPath);
 
+                System.out.println();
                 System.out.println(" ---- JEP initialization done ! ----");
+                System.out.println();
+
                 isJepPathOk = true;
             }
             catch (Exception e) {
@@ -108,19 +116,50 @@ public class Main {
         while (!isPythonPathOk && !isJepPathOk);
 
         if (isJepPathOk) {
-            try {
-                Interpreter interp = new SharedInterpreter();
+            boolean firstRun = true;
+            boolean isScenarioSelected;
+            boolean isFinishedToRunScenarios = false;
 
-                interp.exec("from java.lang import System");
-                interp.exec("s = 'Hello World'");
-                interp.exec("System.out.println(s)");
-                interp.exec("print(s)");
-                interp.exec("print(s[1:-1])");
+            /*
+                Loop to run as many scenario as we want
+             */
+            do {
+                isScenarioSelected = false;
 
+                // List of scenarios
+                switch (UI.getInstance().selectScenario()) {
+                    case 1:
+                        new JEPTest().runScenario(firstRun);
+                        isScenarioSelected = true;
+                        break;
+
+                    case 2:
+                        new RetrieveSimpleData().runScenario(firstRun);
+                        new SendSimpleData().runScenario(firstRun);
+                        isScenarioSelected = true;
+                        break;
+
+                    case 3:
+                        new ImageJInfo().runScenario(firstRun);
+                        isScenarioSelected = true;
+                        break;
+
+                    case 4:
+                        new OpenImage().runScenario(firstRun);
+                        isScenarioSelected = true;
+                        break;
+
+                    default:
+                        System.err.println("Please select only in one of the number above. Please retry");
+                        System.out.println();
+                        continue;
+                }
+
+                // Finish program or loop to run a new scenario
+                firstRun = false;
+                isFinishedToRunScenarios = !UI.getInstance().tryNewScenario();
             }
-            catch (JepException e) {
-                e.printStackTrace();
-            }
+            while (isScenarioSelected && isFinishedToRunScenarios);
         }
     }
 }
