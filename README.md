@@ -73,7 +73,3 @@ java -cp target/jep-integration-0.1.0-SNAPSHOT.jar:target/dependency/'*' net.ima
 > - Get ImageJ version from Python
 > - Open an image
 > - More to come
-
-### Examples with PyImageJ
-
-> - Coming soon
