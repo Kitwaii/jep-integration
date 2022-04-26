@@ -1,10 +1,12 @@
-package net.imagej.jep.scenarios.scenario3;
+package net.imagej.jep.scenarios.scenario4;
 
 import jep.JepException;
 import net.imagej.jep.scenarios.IScenario;
 
 /**
  * Class scenario to test if ImageJ is imported and launching well and retrieve its information from Python
+ *
+ * @author Amandine Tournay
  */
 public class ImageJInfo extends IScenario {
     @Override

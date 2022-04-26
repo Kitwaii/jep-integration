@@ -12,6 +12,8 @@ import java.util.Map;
 /**
  * Class scenario to test the exchange of data between Java and Python
  * -> First test, create data in Python and retrieve it with Java
+ *
+ * @author Amandine Tournay
  */
 public class RetrieveSimpleData extends IScenario {
     @Override

@@ -5,6 +5,8 @@ import net.imagej.jep.scenarios.IScenario;
 
 /**
  * Class scenario to test if JEP is running correctly
+ *
+ * @author Amandine Tournay
  */
 public class JEPTest extends IScenario {
     @Override

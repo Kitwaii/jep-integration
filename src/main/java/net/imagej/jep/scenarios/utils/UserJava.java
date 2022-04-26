@@ -1,5 +1,10 @@
-package net.imagej.jep.scenarios.scenario2;
+package net.imagej.jep.scenarios.utils;
 
+/**
+ * Class to test Object comportment with JEP
+ *
+ * @author Amandine Tournay
+ */
 public class UserJava {
     private final String firstname, lastname;
 

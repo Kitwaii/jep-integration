@@ -8,6 +8,8 @@ import jep.ClassList;
  * Jep scans the Java classpath to be able to import those classes in Python.
  * But, if a library or a class is available on both sides AND if the path is the same, it will create a conflict.
  * To prevent this, we can choose which one to load.
+ *
+ * @author Amandine Tournay
  */
 public class JepClassEnquirer implements ClassEnquirer {
 

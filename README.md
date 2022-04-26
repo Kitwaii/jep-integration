@@ -67,9 +67,16 @@ java -cp target/jep-integration-0.1.0-SNAPSHOT.jar:target/dependency/'*' net.ima
 
 > - Simple JEP execution
 > - Send and retrieve data from Python
+> - Calling Java class in Python as a usual Python import
 
 ### Examples with ImageJ
 
 > - Get ImageJ version from Python
 > - Open an image
 > - More to come
+
+### Misc
+
+> - Example of a custom function in Python to import classes/objects from a package path
+    >
+- This case is created to know how JEP could be integrated in the jimport function of SciJava

@@ -1,4 +1,4 @@
-package net.imagej.jep.scenarios.scenario4;
+package net.imagej.jep.scenarios.scenario5;
 
 import jep.JepException;
 import net.imagej.jep.scenarios.IScenario;
@@ -6,6 +6,11 @@ import net.imglib2.img.Img;
 
 import java.io.IOException;
 
+/**
+ * Class scenario to test if ImageJ is loading and open an image in it
+ *
+ * @author Amandine Tournay
+ */
 public class OpenImage extends IScenario {
     @Override
     public void runScenario(boolean firstRun) {

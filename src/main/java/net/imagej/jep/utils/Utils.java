@@ -1,8 +1,9 @@
 package net.imagej.jep.utils;
 
-import net.imagej.jep.ui.UI;
-
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -10,6 +11,8 @@ import java.util.regex.Pattern;
 
 /**
  * Global Utility class
+ *
+ * @author Amandine Tournay
  */
 public class Utils {
     private static Utils instance;
@@ -74,45 +77,45 @@ public class Utils {
     }
 
     /**
-     * @param pythonPath Path to the Python home
+     * @param pythonExecutionPath Path to the Python home
      * @return The path to the site-packages directory
      */
-    public String setSitePackagesDirectory(String pythonPath, int pythonUserSelection) {
+    public String setSitePackagesDirectory(String pythonExecutionPath) {
+        String terminalLine;
+        String[] command = new String[]{pythonExecutionPath, "-c", "import sys; print([p for p in sys.path if p.endswith(\"site-packages\")])"};
         String sitePackagesPath = "";
 
-        if (pythonUserSelection == 3) {
-            sitePackagesPath = UI.getInstance().selectSitePackagePath();
+        try {
+            // Execute terminal command to find the site-packages directory
+            Process process = Runtime.getRuntime().exec(command);
 
-            if (!new File(sitePackagesPath).isDirectory()) {
-                System.err.println("The selected path is not a directory. Please retry.");
-                System.out.println();
-                return null;
-            }
-        }
-        else {
-            File pythonLibDir = new File(pythonPath, "lib");
+            BufferedReader streamInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            BufferedReader streamError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
 
-            if (!pythonLibDir.isDirectory()) {
-                return null;
-            }
+            // Execution result stream output
+            while ((terminalLine = streamInput.readLine()) != null) {
+                String[] spList = terminalLine.replaceAll("[\\[\\]' ]", "").split(",");
 
-            File[] pythonLibContent = pythonLibDir.listFiles();
+                /*
+                    With classical Python interpreter (non-isolated environment like Venv and Conda with its consorts), there can be multiple site-packages folder.
+                    So, we must find which one has JEP inside
+                 */
+                for (String spPath : spList) {
+                    String isThereJEP = JepUtils.getInstance().findJepLib(spPath);
 
-            if (pythonLibContent != null) {
-                for (File content : pythonLibContent) {
-                    if (content.getName().startsWith("python") && content.isDirectory()) {
-                        File sitePackages = new File(content, "site-packages");
-
-                        if (!sitePackages.isDirectory()) {
-                            return null;
-                        }
-                        else {
-                            sitePackagesPath = sitePackages.getAbsolutePath();
-                            break;
-                        }
+                    if (isThereJEP != null) {
+                        sitePackagesPath = spPath;
                     }
                 }
             }
+
+            // Error stream output
+            while ((terminalLine = streamError.readLine()) != null) {
+                System.err.println(terminalLine);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
         }
 
         return sitePackagesPath;

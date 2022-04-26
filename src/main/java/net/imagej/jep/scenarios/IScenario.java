@@ -11,6 +11,8 @@ import net.imagej.jep.utils.JepClassEnquirer;
  * Abstract class to use for all scenarios.
  * A contract is made to implement the main function to run the scenario, runScenario().
  * The other functions are common functions to run smoothly the scenario.
+ *
+ * @author Amandine Tournay
  */
 public abstract class IScenario {
     private static Interpreter jepInter;

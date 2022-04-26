@@ -7,6 +7,8 @@ import java.io.File;
 
 /**
  * Utility class that groups all functions for JEP
+ *
+ * @author Amandine Tournay
  */
 public class JepUtils {
     private static JepUtils instance;
@@ -53,6 +55,5 @@ public class JepUtils {
      */
     public void setJepPath(String jepPath) throws JepException {
         MainInterpreter.setJepLibraryPath(jepPath);
-        MainInterpreter.setSharedModulesArgv("net.imagej");
     }
 }
