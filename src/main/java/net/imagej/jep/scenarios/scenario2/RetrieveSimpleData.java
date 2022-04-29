@@ -27,7 +27,7 @@ public class RetrieveSimpleData extends IScenario {
             getJepInter().exec("import numpy");
             getJepInter().exec("import jep");
 
-            getJepInter().exec("print(jep.JEP_NUMPY_ENABLED)");
+            getJepInter().exec("print(f'Numpy support in JEP: {jep.JEP_NUMPY_ENABLED}')");
 
             // Number types and calculations
             getJepInter().exec("x = 476");
