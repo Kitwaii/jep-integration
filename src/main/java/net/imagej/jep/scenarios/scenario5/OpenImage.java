@@ -18,15 +18,13 @@ public class OpenImage extends IScenario {
         System.out.println("---- Get ImageJ version from Python ----");
 
         try {
-            openJep(firstRun);
+            openJep();
             loadImageJ(true);
 
             getJepInter().exec("blob = 'src/main/resources/scenario4/blobs.png'");
             Img img = (Img) getIj().io().open(getJepInter().getValue("blob", String.class));
 
             getIj().ui().show(img);
-
-            closeJep();
         }
         catch (JepException e) {
             throwJepException(e);
@@ -34,5 +32,7 @@ public class OpenImage extends IScenario {
         catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        closeJep();
     }
 }

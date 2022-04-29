@@ -15,7 +15,7 @@ public class ImageJInfo extends IScenario {
         System.out.println("---- Get ImageJ version from Python ----");
 
         try {
-            openJep(firstRun);
+            openJep();
             loadImageJ(false);
 
             getJepInter().exec("ijInfo = ImageJ.getVersion()");

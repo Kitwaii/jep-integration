@@ -23,7 +23,7 @@ public class SendSimpleData extends IScenario {
         System.out.println("---- Send data to Python ----");
 
         try {
-            openJep(firstRun);
+            openJep();
 
             // Numbers
             getJepInter().set("x", 476);
@@ -66,7 +66,7 @@ public class SendSimpleData extends IScenario {
             getJepInter().eval("print(f'tuple: {testTuple}')");
             getJepInter().eval("print(f'dict: {dict}')");
             getJepInter().eval("print('numpy.ndarray:')");
-            getJepInter().eval("print(npndarray)");
+            getJepInter().eval("print(str(npndarray))");
             getJepInter().eval("print()");
             getJepInter().eval("print(f'string: {string}')");
             getJepInter().eval("print()");
@@ -74,11 +74,11 @@ public class SendSimpleData extends IScenario {
             getJepInter().eval("print(f'message from class User: {user.sayHello()}')");
             System.out.println("_______________________");
             System.out.println();
-
-            closeJep();
         }
         catch (JepException e) {
             throwJepException(e);
         }
+
+        closeJep();
     }
 }

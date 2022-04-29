@@ -29,7 +29,7 @@ public class UI {
     public String selectPythonInterpreter() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Select the path to the directory of your Python: ");
+        System.out.println("Select the Python Home Directory: ");
 
         return scanner.nextLine();
     }
@@ -56,8 +56,12 @@ public class UI {
         System.out.println("5. Open Image");
         System.out.println();
 
-        System.out.println("---- Others ----");
-        System.out.println("6. Custom Python function to import Java classes");
+        System.out.println("---- ScyJava examples ----");
+        System.out.println("6. Use jimport function to call any Java class");
+        System.out.println();
+
+        System.out.println("---- Misc ----");
+        System.out.println("7. Custom Python function to import Java classes");
         System.out.println();
 
         return scanner.nextInt();

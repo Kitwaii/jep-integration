@@ -16,42 +16,8 @@ pip install jep
 
 ## How to use
 
-### For Conda environment
-
-```shell
-conda activate scijava
-mvn -Pexec
-```
-
-### For Venv environment
-
-```shell
-# For MacOS and Linux
-source /path/to/venv/bin/activate
-# For Windows
-source C:\Users\username\path\to\venv\bin\activate.bat
-mvn -Pexec
-```
-
-### For the global Python interpreter
-
 ```shell
 mvn -Pexec
-```
-
-Then set the path to your Python executable folder commonly `/usr/bin` for **Linux** and `C:\Program Files\Python3x` or
-`C:\Users\username\AppData\Local\Programs\Python3x` for **Windows**
-
-After, set the path to your `site-packages` directory, where all pip packages are installed, and so JEP.
-
-*You can find the path by running one of two commands*:
-
-```shell
-# Get info on a package
-pip show <package_name>
-
-# List all pip packages with the name, version and location
-pip list -v
 ```
 
 **_Note_**: Maven eats the Python-side output. To see that as well, you can do:
@@ -61,6 +27,17 @@ mvn package dependency:copy-dependencies
 java -cp target/jep-integration-0.1.0-SNAPSHOT.jar:target/dependency/'*' net.imagej.jep.Main
 ```
 
+Then set the path to your Python executable folder :
+
+- For Python interpreter,
+  - Commonly `/usr/bin` for **Linux**
+  - `C:\Program Files\Python3<x>` or `C:\Users\<username>\AppData\Local\Programs\Python3<x>` for **Windows**
+- For Conda and consort environment,
+  - `/home/<username>/.conda/envs/<env_name>/bin` for **Linux**
+  - `C:\Users\<username>\.conda\envs\<env_name>\bin`
+  - **YOUR CONDA ENVIRONMENT MUST BE ALREADY ACTIVATED**
+- For Venv environment : The full path to the `bin` directory
+
 ## Available scenarios
 
 ### Basic JEP example
@@ -68,6 +45,10 @@ java -cp target/jep-integration-0.1.0-SNAPSHOT.jar:target/dependency/'*' net.ima
 > - Simple JEP execution
 > - Send and retrieve data from Python
 > - Calling Java class in Python as a usual Python import
+
+### Examples with ScyJava
+
+> - Use `jimport` function
 
 ### Examples with ImageJ
 

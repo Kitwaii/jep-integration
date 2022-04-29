@@ -1,11 +1,9 @@
 package net.imagej.jep.scenarios;
 
 import jep.Interpreter;
-import jep.JepConfig;
 import jep.JepException;
 import jep.SharedInterpreter;
 import net.imagej.ImageJ;
-import net.imagej.jep.utils.JepClassEnquirer;
 
 /**
  * Abstract class to use for all scenarios.
@@ -16,7 +14,6 @@ import net.imagej.jep.utils.JepClassEnquirer;
  */
 public abstract class IScenario {
     private static Interpreter jepInter;
-    private static JepConfig jepConfig;
     private static ImageJ ij;
 
     /**
@@ -28,19 +25,9 @@ public abstract class IScenario {
 
     /**
      * Open new JEP SharedInterpreter
-     *
-     * @param firstRun Is the first that the scenario is run in the program instance
      */
-    protected static void openJep(boolean firstRun) {
-        jepConfig = new JepConfig();
-
-        // We can configure JEP only before any SharedInterpreter has been created
-        if (firstRun) {
-            getJepConfig().setClassEnquirer(new JepClassEnquirer());
-            SharedInterpreter.setConfig(getJepConfig());
-        }
-
-        jepInter = new SharedInterpreter();
+    protected static void openJep() {
+        setJepInter(new SharedInterpreter());
     }
 
     /**
@@ -84,8 +71,8 @@ public abstract class IScenario {
         return jepInter;
     }
 
-    public static JepConfig getJepConfig() {
-        return jepConfig;
+    private static void setJepInter(Interpreter interpreter) {
+        jepInter = interpreter;
     }
 
     public static ImageJ getIj() {

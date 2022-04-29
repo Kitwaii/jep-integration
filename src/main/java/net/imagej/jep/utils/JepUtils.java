@@ -1,7 +1,6 @@
 package net.imagej.jep.utils;
 
-import jep.JepException;
-import jep.MainInterpreter;
+import jep.*;
 
 import java.io.File;
 
@@ -12,6 +11,7 @@ import java.io.File;
  */
 public class JepUtils {
     private static JepUtils instance;
+    private static JepConfig jepConfig;
 
     private JepUtils() {
     }
@@ -53,7 +53,27 @@ public class JepUtils {
     /**
      * Set the path of the JEP library either the OS
      */
-    public void setJepPath(String jepPath) throws JepException {
+    public void setJepPath(String jepPath, String pythonHome) throws JepException {
+        setJepConfig(new JepConfig());
+
+        getJepConfig().setClassEnquirer(new JepClassEnquirer());
+
+        if (jepPath.matches(".*conda.*|.*venv")) {
+            PyConfig pyConfig = new PyConfig();
+            pyConfig.setPythonHome(pythonHome);
+
+            MainInterpreter.setInitParams(pyConfig);
+        }
+
+        SharedInterpreter.setConfig(getJepConfig());
         MainInterpreter.setJepLibraryPath(jepPath);
+    }
+
+    public static JepConfig getJepConfig() {
+        return jepConfig;
+    }
+
+    private void setJepConfig(JepConfig newJepConfig) {
+        jepConfig = newJepConfig;
     }
 }

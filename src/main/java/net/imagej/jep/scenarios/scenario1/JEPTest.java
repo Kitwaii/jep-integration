@@ -15,18 +15,18 @@ public class JEPTest extends IScenario {
         System.out.println();
 
         try {
-            openJep(firstRun);
+            openJep();
 
             getJepInter().exec("from java.lang import System");
             getJepInter().exec("s = 'Hello World'");
             getJepInter().exec("System.out.println(s)");
             getJepInter().exec("print(s)");
             getJepInter().exec("print(s[1:-1])");
-
-            closeJep();
         }
         catch (JepException e) {
             throwJepException(e);
         }
+
+        closeJep();
     }
 }

@@ -6,7 +6,8 @@ import net.imagej.jep.scenarios.scenario2.SendSimpleData;
 import net.imagej.jep.scenarios.scenario3.ImportWithoutSetClass;
 import net.imagej.jep.scenarios.scenario4.ImageJInfo;
 import net.imagej.jep.scenarios.scenario5.OpenImage;
-import net.imagej.jep.scenarios.scenario6.CustomPythonImport;
+import net.imagej.jep.scenarios.scenario6.ScyJavaJImport;
+import net.imagej.jep.scenarios.scenario7.CustomPythonImport;
 import net.imagej.jep.ui.UI;
 import net.imagej.jep.utils.JepUtils;
 import net.imagej.jep.utils.Utils;
@@ -21,7 +22,7 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        String pythonPath, pythonExecutionPath, sitePackagesPath, jepPath;
+        String pythonHome, pythonExecutionPath, sitePackagesPath, jepPath;
         boolean isPythonPathOk = false;
         boolean isJepPathOk = false;
 
@@ -30,10 +31,10 @@ public class Main {
         // Loop to set JEP from the console and user input
         do {
 
-            pythonPath = UI.getInstance().selectPythonInterpreter();
+            pythonHome = UI.getInstance().selectPythonInterpreter();
 
-            if (new File(pythonPath).isDirectory()) {
-                pythonExecutionPath = Utils.getInstance().findPythonExecutable(pythonPath, true);
+            if (new File(pythonHome).isDirectory()) {
+                pythonExecutionPath = Utils.getInstance().findPythonExecutable(pythonHome, true);
 
                 if (pythonExecutionPath == null) {
                     pythonExecutionPath = "";
@@ -43,7 +44,7 @@ public class Main {
                 }
             }
             else {
-                pythonExecutionPath = Utils.getInstance().findPythonExecutable(pythonPath, false);
+                pythonExecutionPath = Utils.getInstance().findPythonExecutable(pythonHome, false);
             }
 
             isPythonPathOk = Utils.getInstance().isPath(pythonExecutionPath) && Utils.getInstance().findPythonExecutable(pythonExecutionPath, false) != null;
@@ -52,6 +53,7 @@ public class Main {
             }
 
             // Set the site-packages directory path
+            //sitePackagesPath = Utils.getInstance().setSitePackagesDirectory(pythonExecutionPath);
             sitePackagesPath = Utils.getInstance().setSitePackagesDirectory(pythonExecutionPath);
 
             if (sitePackagesPath == null) {
@@ -68,7 +70,7 @@ public class Main {
 
             // Set JEP
             try {
-                JepUtils.getInstance().setJepPath(jepPath);
+                JepUtils.getInstance().setJepPath(jepPath, pythonHome);
 
                 System.out.println();
                 System.out.println(" ---- JEP initialization done ! ----");
@@ -119,6 +121,11 @@ public class Main {
                         break;
 
                     case 6:
+                        new ScyJavaJImport().runScenario(firstRun);
+                        isScenarioSelected = true;
+                        break;
+
+                    case 7:
                         new CustomPythonImport().runScenario(firstRun);
                         isScenarioSelected = true;
                         break;
@@ -135,5 +142,7 @@ public class Main {
             }
             while (isScenarioSelected && isFinishedToRunScenarios);
         }
+
+        System.exit(0);
     }
 }

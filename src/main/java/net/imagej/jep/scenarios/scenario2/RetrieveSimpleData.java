@@ -22,9 +22,12 @@ public class RetrieveSimpleData extends IScenario {
         System.out.println("---- Retrieve data from Python ----");
 
         try {
-            openJep(firstRun);
+            openJep();
 
             getJepInter().exec("import numpy");
+            getJepInter().exec("import jep");
+
+            getJepInter().exec("print(jep.JEP_NUMPY_ENABLED)");
 
             // Number types and calculations
             getJepInter().exec("x = 476");
@@ -106,11 +109,11 @@ public class RetrieveSimpleData extends IScenario {
             System.out.println("Say hello through User class: " + hello);
             System.out.println("_______________________");
             System.out.println();
-
-            closeJep();
         }
         catch (JepException e) {
             throwJepException(e);
         }
+
+        closeJep();
     }
 }

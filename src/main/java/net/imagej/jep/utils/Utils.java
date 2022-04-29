@@ -29,13 +29,6 @@ public class Utils {
     }
 
     /**
-     * @return The name of the OS where the program is executed
-     */
-    public String getOSName() {
-        return System.getProperty("os.name");
-    }
-
-    /**
      * @param path The path to test
      * @return The result if the String is really a path (compatible Windows, MacOS & Linux)
      */
@@ -57,14 +50,19 @@ public class Utils {
      */
     public String findPythonExecutable(String path, boolean isDirectory) {
         if (isDirectory) {
-            File[] pythonFiles = new File(path).listFiles(((file, name) -> name.equals(getOSName().matches("Windows.*") ? "python.exe" : "python")));
+            File[] pythonFiles = new File(path).listFiles((file, name) -> name.equals("bin") && file.isDirectory());
 
             if (pythonFiles != null) {
-                return Arrays.stream(pythonFiles).findFirst().map(File::getAbsolutePath).orElse(null);
+                for (File binDirectory : pythonFiles) {
+                    File[] binFiles = binDirectory.listFiles((file, name) -> name.matches("python?(?:\\.exe|$)"));
+
+                    if (binFiles != null) {
+                        return Arrays.stream(binFiles).findFirst().map(File::getAbsolutePath).orElse(null);
+                    }
+                }
             }
-            else {
-                return null;
-            }
+
+            return null;
         }
         else {
             if (Files.exists(Paths.get(path))) {
@@ -105,6 +103,7 @@ public class Utils {
 
                     if (isThereJEP != null) {
                         sitePackagesPath = spPath;
+                        break;
                     }
                 }
             }
