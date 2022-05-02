@@ -5,7 +5,7 @@ import net.imagej.jep.scenarios.utils.UserJava;
 
 public class ScyJavaJImport extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         openJep();
 
         getJepInter().exec("from scyjava import jimport");

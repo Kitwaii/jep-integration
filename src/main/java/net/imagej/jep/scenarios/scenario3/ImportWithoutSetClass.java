@@ -9,7 +9,7 @@ import net.imagej.jep.scenarios.IScenario;
  */
 public class ImportWithoutSetClass extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         openJep();
 
         getJepInter().exec("from net.imagej.jep.scenarios.utils import UserJava");

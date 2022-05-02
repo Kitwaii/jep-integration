@@ -18,10 +18,8 @@ public abstract class IScenario {
 
     /**
      * Main function to run an example scenario
-     *
-     * @param firstRun Is the first that the scenario is run in the program instance
      */
-    public abstract void runScenario(boolean firstRun);
+    public abstract void runScenario();
 
     /**
      * Open new JEP SharedInterpreter

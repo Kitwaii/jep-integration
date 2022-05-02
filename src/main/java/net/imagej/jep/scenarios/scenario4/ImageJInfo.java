@@ -10,7 +10,7 @@ import net.imagej.jep.scenarios.IScenario;
  */
 public class ImageJInfo extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         System.out.println();
         System.out.println("---- Get ImageJ version from Python ----");
 

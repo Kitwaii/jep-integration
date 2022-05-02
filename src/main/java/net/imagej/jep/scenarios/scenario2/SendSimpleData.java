@@ -18,12 +18,14 @@ import java.util.HashMap;
  */
 public class SendSimpleData extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         System.out.println();
         System.out.println("---- Send data to Python ----");
 
         try {
             openJep();
+
+            getJepInter().exec("import numpy");
 
             // Numbers
             getJepInter().set("x", 476);

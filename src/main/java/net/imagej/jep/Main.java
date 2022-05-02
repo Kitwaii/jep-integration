@@ -8,6 +8,7 @@ import net.imagej.jep.scenarios.scenario4.ImageJInfo;
 import net.imagej.jep.scenarios.scenario5.OpenImage;
 import net.imagej.jep.scenarios.scenario6.ScyJavaJImport;
 import net.imagej.jep.scenarios.scenario7.CustomPythonImport;
+import net.imagej.jep.scenarios.test.Test;
 import net.imagej.jep.ui.UI;
 import net.imagej.jep.utils.JepUtils;
 import net.imagej.jep.utils.Utils;
@@ -85,7 +86,6 @@ public class Main {
         while (!isPythonPathOk && !isJepPathOk);
 
         if (isJepPathOk) {
-            boolean firstRun = true;
             boolean isScenarioSelected;
             boolean isFinishedToRunScenarios = false;
 
@@ -96,37 +96,42 @@ public class Main {
                 // List of scenarios
                 switch (UI.getInstance().selectScenario()) {
                     case 1:
-                        new JEPTest().runScenario(firstRun);
+                        new JEPTest().runScenario();
                         isScenarioSelected = true;
                         break;
                     case 2:
-                        new RetrieveSimpleData().runScenario(firstRun);
-                        new SendSimpleData().runScenario(firstRun);
+                        new RetrieveSimpleData().runScenario();
+                        new SendSimpleData().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 3:
-                        new ImportWithoutSetClass().runScenario(firstRun);
+                        new ImportWithoutSetClass().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 4:
-                        new ImageJInfo().runScenario(firstRun);
+                        new ImageJInfo().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 5:
-                        new OpenImage().runScenario(firstRun);
+                        new OpenImage().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 6:
-                        new ScyJavaJImport().runScenario(firstRun);
+                        new ScyJavaJImport().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 7:
-                        new CustomPythonImport().runScenario(firstRun);
+                        new CustomPythonImport().runScenario();
+                        isScenarioSelected = true;
+                        break;
+
+                    case 8:
+                        new Test().runScenario();
                         isScenarioSelected = true;
                         break;
 
@@ -137,7 +142,6 @@ public class Main {
                 }
 
                 // Finish program or loop to run a new scenario
-                firstRun = false;
                 isFinishedToRunScenarios = !UI.getInstance().tryNewScenario();
             }
             while (isScenarioSelected && isFinishedToRunScenarios);

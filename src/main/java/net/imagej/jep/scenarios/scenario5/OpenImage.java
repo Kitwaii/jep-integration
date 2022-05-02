@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class OpenImage extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         System.out.println();
         System.out.println("---- Get ImageJ version from Python ----");
 

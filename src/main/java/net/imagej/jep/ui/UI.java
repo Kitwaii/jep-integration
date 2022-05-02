@@ -62,6 +62,7 @@ public class UI {
 
         System.out.println("---- Misc ----");
         System.out.println("7. Custom Python function to import Java classes");
+        System.out.println("8. Test availability of Numpy in JEP");
         System.out.println();
 
         return scanner.nextInt();

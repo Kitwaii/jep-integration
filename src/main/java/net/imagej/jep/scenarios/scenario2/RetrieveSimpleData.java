@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class RetrieveSimpleData extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         System.out.println();
         System.out.println("---- Retrieve data from Python ----");
 
@@ -25,9 +25,6 @@ public class RetrieveSimpleData extends IScenario {
             openJep();
 
             getJepInter().exec("import numpy");
-            getJepInter().exec("import jep");
-
-            getJepInter().exec("print(f'Numpy support in JEP: {jep.JEP_NUMPY_ENABLED}')");
 
             // Number types and calculations
             getJepInter().exec("x = 476");

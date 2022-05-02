@@ -10,7 +10,7 @@ import net.imagej.jep.scenarios.IScenario;
  */
 public class JEPTest extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         System.out.println("---- JEP Test ----");
         System.out.println();
 
