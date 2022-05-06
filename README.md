@@ -68,11 +68,9 @@ Then set the path to your Python executable folder :
 ### Examples with ScyJava
 
 > - Use `jimport` function
-    >
-- Available only if you have a development version of ScyJava containing the JEP implementation
+>   - Available only if you have a development version of ScyJava containing the JEP implementation
 
 ### Misc
 
 > - Example of a custom function in Python to import classes/objects from a package path
-    >
-- This case is created to know how JEP could be integrated in the jimport function of SciJava
+>   - This case is created to know how JEP could be integrated in the jimport function of SciJava
