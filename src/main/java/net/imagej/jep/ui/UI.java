@@ -49,20 +49,22 @@ public class UI {
         System.out.println("1. Basic running test");
         System.out.println("2. Send and retrieve data");
         System.out.println("3. Get Java class without set() method");
+        System.out.println("4. Test availability of Numpy in JEP");
         System.out.println();
 
         System.out.println("---- Simple ImageJ examples by sending instance to Python ----");
-        System.out.println("4. Get ImageJ version through Python");
-        System.out.println("5. Open Image");
+        System.out.println("5. Get ImageJ version through Python");
+        System.out.println("6. Open Image");
         System.out.println();
 
         System.out.println("---- ScyJava examples ----");
-        System.out.println("6. Use jimport function to call any Java class");
+        System.out.println("7. Use jimport function to call any Java class");
+        System.out.println("\\033[3mAvailable only if you have a development version of ScyJava containing the JEP implementation\\033[0m");
         System.out.println();
 
         System.out.println("---- Misc ----");
-        System.out.println("7. Custom Python function to import Java classes");
-        System.out.println("8. Test availability of Numpy in JEP");
+        System.out.println("8. Custom Python function to import Java classes");
+
         System.out.println();
 
         return scanner.nextInt();

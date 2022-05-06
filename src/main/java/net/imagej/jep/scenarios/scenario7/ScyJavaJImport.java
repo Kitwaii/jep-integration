@@ -1,4 +1,4 @@
-package net.imagej.jep.scenarios.scenario6;
+package net.imagej.jep.scenarios.scenario7;
 
 import net.imagej.jep.scenarios.IScenario;
 import net.imagej.jep.scenarios.utils.UserJava;

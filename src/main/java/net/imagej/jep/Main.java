@@ -4,11 +4,11 @@ import net.imagej.jep.scenarios.scenario1.JEPTest;
 import net.imagej.jep.scenarios.scenario2.RetrieveSimpleData;
 import net.imagej.jep.scenarios.scenario2.SendSimpleData;
 import net.imagej.jep.scenarios.scenario3.ImportWithoutSetClass;
-import net.imagej.jep.scenarios.scenario4.ImageJInfo;
-import net.imagej.jep.scenarios.scenario5.OpenImage;
-import net.imagej.jep.scenarios.scenario6.ScyJavaJImport;
-import net.imagej.jep.scenarios.scenario7.CustomPythonImport;
-import net.imagej.jep.scenarios.test.Test;
+import net.imagej.jep.scenarios.scenario4.NumpyTest;
+import net.imagej.jep.scenarios.scenario5.ImageJInfo;
+import net.imagej.jep.scenarios.scenario6.OpenImage;
+import net.imagej.jep.scenarios.scenario7.ScyJavaJImport;
+import net.imagej.jep.scenarios.scenario8.CustomPythonImport;
 import net.imagej.jep.ui.UI;
 import net.imagej.jep.utils.JepUtils;
 import net.imagej.jep.utils.Utils;
@@ -111,27 +111,27 @@ public class Main {
                         break;
 
                     case 4:
-                        new ImageJInfo().runScenario();
+                        new NumpyTest().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 5:
-                        new OpenImage().runScenario();
+                        new ImageJInfo().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 6:
-                        new ScyJavaJImport().runScenario();
+                        new OpenImage().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 7:
-                        new CustomPythonImport().runScenario();
+                        new ScyJavaJImport().runScenario();
                         isScenarioSelected = true;
                         break;
 
                     case 8:
-                        new Test().runScenario();
+                        new CustomPythonImport().runScenario();
                         isScenarioSelected = true;
                         break;
 

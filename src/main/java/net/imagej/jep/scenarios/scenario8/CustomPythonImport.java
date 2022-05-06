@@ -1,4 +1,4 @@
-package net.imagej.jep.scenarios.scenario7;
+package net.imagej.jep.scenarios.scenario8;
 
 import net.imagej.jep.scenarios.IScenario;
 
@@ -10,7 +10,7 @@ import net.imagej.jep.scenarios.IScenario;
  */
 public class CustomPythonImport extends IScenario {
     @Override
-    public void runScenario(boolean firstRun) {
+    public void runScenario() {
         openJep();
 
         getJepInter().exec("from importlib import import_module");

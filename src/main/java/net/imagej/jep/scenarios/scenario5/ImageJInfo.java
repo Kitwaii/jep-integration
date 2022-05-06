@@ -1,4 +1,4 @@
-package net.imagej.jep.scenarios.scenario4;
+package net.imagej.jep.scenarios.scenario5;
 
 import jep.JepException;
 import net.imagej.jep.scenarios.IScenario;

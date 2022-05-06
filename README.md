@@ -11,6 +11,17 @@ environment to use with [SciJava](https://scijava.org/).
 pip install jep
 ```
 
+- For **Linux** users : export the variable *LD_PRELOAD* with the path of the
+  *libpython.so* file in your terminal
+  - It will let JEP to enable the Numpy support
+  - Normally on the release of JEP 4.1 (~Autumn 2022), this step will be useless
+
+```shell
+export LD_PRELOAD=/path/to/python/libpython3.x.so
+# i.e. with a Python interpreter but it can be also from Conda or Venv
+export LD_PRELOAD=/usr/bin/libpython3.10.so.1.0
+```
+
 - No need to set a `LD_LIBRARY_PATH` environment variable
 - No need to set a `PYTHONHOME` environment variable
 
@@ -34,9 +45,10 @@ Then set the path to your Python executable folder :
   - `C:\Program Files\Python3<x>` or `C:\Users\<username>\AppData\Local\Programs\Python3<x>` for **Windows**
 - For Conda and consort environment,
   - `/home/<username>/.conda/envs/<env_name>/bin` for **Linux**
-  - `C:\Users\<username>\.conda\envs\<env_name>\bin`
-  - **YOUR CONDA ENVIRONMENT MUST BE ALREADY ACTIVATED**
+  - `C:\Users\<username>\.conda\envs\<env_name>\bin` for **Windows**
+  - *It is not necessary to activate the environment*
 - For Venv environment : The full path to the `bin` directory
+  - *It is not necessary to activate the environment*
 
 ## Available scenarios
 
@@ -45,16 +57,19 @@ Then set the path to your Python executable folder :
 > - Simple JEP execution
 > - Send and retrieve data from Python
 > - Calling Java class in Python as a usual Python import
-
-### Examples with ScyJava
-
-> - Use `jimport` function
+> - Check if JEP can import Numpy
 
 ### Examples with ImageJ
 
 > - Get ImageJ version from Python
 > - Open an image
 > - More to come
+
+### Examples with ScyJava
+
+> - Use `jimport` function
+    >
+- Available only if you have a development version of ScyJava containing the JEP implementation
 
 ### Misc
 
